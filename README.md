@@ -87,7 +87,19 @@ The Python version recomputes `create_raw_signals` + `parse_signals` + `apply_co
 
 **Execution — parallel strategy evaluation:**
 
-All ~20,000 strategies run in parallel via `rayon`, saturating all available cores. The Python version runs strategies sequentially or with limited multiprocessing.
+All ~20,000 strategies run in parallel via `rayon`, saturating all available cores. The Python version runs strategies with `multiprocessing.Pool`.
+
+### Benchmark Results
+
+Identical workload (same 50 strategies, same CSV, same settings) on the same machine (AMD Ryzen 9 7950X, 32 threads):
+
+| | Python (32 workers) | Rust (32 threads) | Speedup |
+|---|---|---|---|
+| **50 strategies** | 70.2s | 0.5s | **140x** |
+| **Per strategy** | 1,404ms | 10ms | **140x** |
+| **Projected 19,806** | ~7.7 hours | ~3.3 min | |
+
+> Benchmark methodology: both versions ran the first 50 strategies from the same deterministic generation order, with identical parameters (SOLUSDT 1h, 48,853 bars, 10k IS / 120k OOS candles, WFO trigger 5000, SL 2%). Python used `multiprocessing.Pool` with 32 spawn workers; Rust used `rayon::par_iter` with 32 threads.
 
 ---
 
