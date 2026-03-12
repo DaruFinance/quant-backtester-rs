@@ -269,6 +269,12 @@ main()
 
 ---
 
+## Parity Note
+
+The Rust output has been validated against the Python version for ~1,000 strategies, but not all ~20,000. Minor numerical differences may exist in edge cases due to floating-point ordering, random seeds in indicator variance tests, or subtle behavioral differences between pandas and the hand-rolled implementations. If exact parity with the Python version is critical for your use case, verify the specific strategy families you rely on.
+
+---
+
 ## Disclaimer
 
 This tool is for **research and educational purposes only**. Nothing in this repository constitutes financial advice. Backtests and simulations do not guarantee future results. Use at your own risk.
