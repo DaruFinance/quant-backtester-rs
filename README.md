@@ -99,7 +99,7 @@ Identical workload (same 50 strategies, same CSV, same settings) on the same mac
 | **Per strategy** | 1,404ms | 10ms | **140x** |
 | **Projected 19,806** | ~7.7 hours | ~3.3 min | |
 
-> Benchmark methodology: both versions ran the first 50 strategies from the same deterministic generation order, with identical parameters (SOLUSDT 1h, 48,853 bars, 10k IS / 120k OOS candles, WFO trigger 5000, SL 2%). Python used `multiprocessing.Pool` with 32 spawn workers; Rust used `rayon::par_iter` with 32 threads.
+> Benchmark ran on an AMD Ryzen 9 7950X (16 cores / 32 threads). Both versions processed the first 50 strategies from the same deterministic generation order, with identical parameters (SOLUSDT 1h, 48,853 bars, 10k IS / 120k OOS candles, WFO trigger 5000, SL 2%). Python used `multiprocessing.Pool` with 32 spawn workers; Rust used `rayon::par_iter` with 32 threads.
 
 ---
 
